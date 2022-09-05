@@ -1,17 +1,16 @@
-// import { configureStore, createSlice, createAction, createReducer } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
+import { contactReducer } from "./contactSlice";
+import { persistStore } from 'redux-persist'
 
 
-// const mySlice = createSlice({
-//     name: 'contact',
-//     initialState: [],
-//     reducers: {
-//         addContacts(state, action) {
-//             return state.push(action.payload);
-//         }
-//     }
-// })
 
 
-// export const store = configureStore({
-//     items: {},
-// })
+export const store = configureStore({
+    reducer: {
+        contacts: contactReducer,
+    },
+});
+
+export const persistor = persistStore(store);
+
+
