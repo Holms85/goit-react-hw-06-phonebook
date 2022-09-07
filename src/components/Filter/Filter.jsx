@@ -1,9 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import style from './Filter.module.css';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  filterContact,
+  getFilteredContact,
+} from 'Redux/contactSlice';
 
 
-export default function Filter({ filter, onChange }) {
+export default function Filter() {
+const dispatch = useDispatch();
+  const filter = useSelector(getFilteredContact);
+  const changeFilter = e => dispatch(filterContact(e.currentTarget.value));
+
   return (
     <div className={style.flex}>
       <label className={style.label}>Find contact by name</label>
@@ -11,13 +19,8 @@ export default function Filter({ filter, onChange }) {
         className={style.input}
         type="text"
         value={filter}
-        onChange={onChange}
+        onChange={changeFilter}
       ></input>
     </div>
   );
 }
-
-Filter.propTypes = {
-  filter: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-};
