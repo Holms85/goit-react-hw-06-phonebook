@@ -2,23 +2,19 @@ import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import style from './ContactForm.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import {addContacts, getContacts} from 'Redux/contactSlice';
-
-
+import { addContacts, getContacts } from 'Redux/contactSlice';
 
 export default function ContactForm() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
 
   const reset = () => {
     setName('');
     setNumber('');
   };
-
-
 
   const upgradeContacts = ({ name, number }) => {
     const contact = {
@@ -88,4 +84,3 @@ const dispatch = useDispatch();
     </form>
   );
 }
-
